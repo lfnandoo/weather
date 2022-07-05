@@ -1,5 +1,5 @@
 import { WiDaySunny } from 'react-icons/wi';
-import { Skeleton } from '../../../../pages/components/carousel-item/carousel-item.styles';
+import { Skeleton } from '../../../skeleton/skeleton.styles';
 import { DayItemContainer } from './day-item.styles';
 
 type weekdayPrefix = 'Segunda' | 'Terça' | 'Quarta' | 'Quinta' | 'Sexta';

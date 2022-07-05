@@ -4,7 +4,7 @@ import { config } from 'react-spring';
 
 function Carousel({ slides }: { slides: { key: number | string; content: ReactNode }[] }) {
   const [rsConfig, setRsConfig] = useState({
-    goToSlide: 2,
+    goToSlide: 1,
     offsetRadius: 1,
     showNavigation: false,
     animationConfig: config.default,
@@ -15,7 +15,7 @@ function Carousel({ slides }: { slides: { key: number | string; content: ReactNo
       };
     }),
   });
-  console.log(rsConfig);
+
   return <RSCarousel {...rsConfig} />;
 }
 
