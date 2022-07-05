@@ -2,7 +2,7 @@ import { Cloud } from './components/cloud/cloud.component';
 import { DayItem, DayInterface } from './components/day-item/day-item.component';
 import { DaysDegreesListContainer } from './days-degrees-list.styles';
 
-function DaysDegreesList() {
+function DaysDegreesList({ isLoading }: { isLoading: boolean }) {
   const days: DayInterface[] = [
     {
       description: 'Amanhã',
@@ -35,9 +35,9 @@ function DaysDegreesList() {
     <div>
       <Cloud />
       <DaysDegreesListContainer>
-        {days.map((dayData) => (
-          <DayItem data={dayData} />
-        ))}
+        {!isLoading && days.map((dayData) => <DayItem key={Math.random()} data={dayData} />)}
+        {isLoading &&
+          Array.from({ length: 5 }).map(() => <DayItem key={Math.random()} isLoading />)}
       </DaysDegreesListContainer>
     </div>
   );

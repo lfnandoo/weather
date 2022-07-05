@@ -1,11 +1,13 @@
 import { ReactNode, useState } from 'react';
 import RSCarousel from 'react-spring-3d-carousel';
+import { config } from 'react-spring';
 
 function Carousel({ slides }: { slides: { key: number | string; content: ReactNode }[] }) {
   const [rsConfig, setRsConfig] = useState({
-    goToSlide: 1,
+    goToSlide: 2,
     offsetRadius: 1,
     showNavigation: false,
+    animationConfig: config.default,
     slides: slides.map((slide, index) => {
       return {
         ...slide,
@@ -13,7 +15,7 @@ function Carousel({ slides }: { slides: { key: number | string; content: ReactNo
       };
     }),
   });
-
+  console.log(rsConfig);
   return <RSCarousel {...rsConfig} />;
 }
 
