@@ -16,7 +16,7 @@ function List({
         {!isLoading && (
           <>
             {items.map((item, index) => (
-              <li key={Math.random()} onClick={() => onClick(index)}>
+              <li data-testid="item" key={Math.random()} onClick={() => onClick(index)}>
                 {item.description}
               </li>
             ))}
@@ -25,7 +25,7 @@ function List({
         )}
         {isLoading &&
           Array.from({ length: 3 }).map(() => (
-            <li key={Math.random()}>
+            <li data-testid="item-loading" key={Math.random()}>
               <Skeleton width="150px" height="20px" />
             </li>
           ))}
