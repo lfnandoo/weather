@@ -7,7 +7,7 @@ const DayItemContainer = styled.li`
   max-width: 600px;
   margin: 0 auto;
 
-  p {
+  > div {
     z-index: 10;
     display: flex;
     justify-content: space-between;
@@ -17,12 +17,12 @@ const DayItemContainer = styled.li`
     margin-right: 15vw;
   }
 
-  p:nth-child(2) {
+  > div:nth-child(2) {
     width: 35%;
     margin: 0;
   }
 
-  p:nth-child(2) > span:nth-child(2) {
+  > div:nth-child(2) > span:nth-child(2) {
     opacity: 0.7;
   }
 `;

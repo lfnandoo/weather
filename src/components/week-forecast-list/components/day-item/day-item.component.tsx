@@ -1,5 +1,5 @@
 import { WiDaySunny } from 'react-icons/wi';
-import { Skeleton } from '../../../skeleton/skeleton.styles';
+import { Skeleton } from '../../../skeleton/skeleton.component';
 import { DayItemContainer } from './day-item.styles';
 
 interface DayInterface {
@@ -15,8 +15,8 @@ interface DayProps {
 
 function DayItem({ data, isLoading }: DayProps) {
   return (
-    <DayItemContainer>
-      <p>
+    <DayItemContainer data-testid={isLoading ? 'day-item-loading' : 'day-item'}>
+      <div>
         {!isLoading && (
           <>
             <span>{data?.description}</span>
@@ -29,8 +29,8 @@ function DayItem({ data, isLoading }: DayProps) {
             <Skeleton width="30px" height="24px" />
           </>
         )}
-      </p>
-      <p>
+      </div>
+      <div>
         {!isLoading && typeof data?.max !== 'undefined' && typeof data?.min !== 'undefined' && (
           <>
             <span>{Math.floor(data.max)}°C</span>
@@ -43,7 +43,7 @@ function DayItem({ data, isLoading }: DayProps) {
             <Skeleton width="30px" height="24px" />
           </>
         )}
-      </p>
+      </div>
     </DayItemContainer>
   );
 }
