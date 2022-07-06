@@ -2,13 +2,10 @@ import { WiDaySunny } from 'react-icons/wi';
 import { Skeleton } from '../../../skeleton/skeleton.styles';
 import { DayItemContainer } from './day-item.styles';
 
-type weekdayPrefix = 'Segunda' | 'Terça' | 'Quarta' | 'Quinta' | 'Sexta';
-type weekday = `${weekdayPrefix}-feira`;
-
 interface DayInterface {
-  description: 'Amanhã' | weekday | 'Sábado' | 'Domingo';
-  nowDegrees: string;
-  minimumDegrees: string;
+  description: string;
+  max: number;
+  min: number;
 }
 
 interface DayProps {
@@ -34,10 +31,10 @@ function DayItem({ data, isLoading }: DayProps) {
         )}
       </p>
       <p>
-        {!isLoading && (
+        {!isLoading && typeof data?.max !== 'undefined' && typeof data?.min !== 'undefined' && (
           <>
-            <span>{data?.nowDegrees}°</span>
-            <span>{data?.minimumDegrees}°</span>
+            <span>{Math.floor(data.max)}°C</span>
+            <span>{Math.floor(data.min)}°C</span>
           </>
         )}
         {isLoading && (

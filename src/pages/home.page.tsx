@@ -1,24 +1,65 @@
 import { useState } from 'react';
 import { Carousel } from '../components/carousel/carousel.component';
-import { DaysDegreesList } from '../components/days-degrees-list/days-degrees-list.component';
+import { WeekForecastList } from '../components/week-forecast-list/week-forecast-list.component';
 import { CarouselContainer } from './home.styles';
 import { CarouselItem } from './components/carousel-item/carousel-item.component';
+import { GetForecastByPosResponse, WeatherService } from '../services/weather/weather.service';
+import { DayInterface } from '../components/week-forecast-list/components/day-item/day-item.component';
 
 function Home() {
   const [isLoading, setIsLoading] = useState(false);
+  const [weekForecast, setWeekForecast] = useState([] as DayInterface[]);
 
-  async function handleLoadLocation(value: { data: any }) {
+  function handleChangeWeekForecastList(data: GetForecastByPosResponse) {
+    const list: DayInterface[] = [];
+    const nextFiveDays = data.daily?.slice(1, 6);
+
+    nextFiveDays?.forEach((day) => {
+      const weekDay = new Date(day.dt * 1000).toLocaleDateString('pt-br', { weekday: 'long' });
+      const description = weekDay.charAt(0).toUpperCase() + weekDay.slice(1);
+      list.push({ description, max: day.temp.max, min: day.temp.min });
+    });
+
+    setWeekForecast(list);
+  }
+
+  async function handleLoadLocation({
+    lat,
+    lon,
+    description = '',
+  }: {
+    lat: number;
+    lon: number;
+    description?: string;
+  }) {
     setIsLoading(true);
     try {
-      const { lat, lon } = value.data;
-      const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=ecb81a32abd64beff64b5bc7f39910c4`,
-      ).then((res) => res.json());
+      const response = await WeatherService.getForecastByPos({ lat, lon });
 
-      return {} as { description: string; degrees: string };
+      handleChangeWeekForecastList(response);
+
+      return {
+        temp: response?.current?.temp,
+        description,
+        lat,
+        lon,
+      };
     } finally {
       setIsLoading(false);
     }
+  }
+
+  async function handleLoadSearch(value: { data: any }) {
+    const { lat, lon } = value.data;
+
+    if (typeof lat !== 'undefined' && typeof lon !== 'undefined') {
+      console.log('chama fio');
+      return handleLoadLocation({ lat, lon });
+    }
+
+    setWeekForecast([]);
+
+    return {};
   }
 
   return (
@@ -28,36 +69,30 @@ function Home() {
           slides={[
             {
               key: Math.random(),
-              content: <CarouselItem type="search" onLoad={handleLoadLocation} />,
+              content: <CarouselItem type="local" onPosLoad={handleLoadLocation} />,
+            },
+            {
+              key: Math.random(),
+              content: <CarouselItem type="search" onSearchLoad={handleLoadSearch} />,
             },
             {
               key: Math.random(),
               content: (
                 <CarouselItem
                   type="default"
-                  data={{
-                    description: 'Copacabana, Rio de Janeiro',
-                    degrees: '40',
+                  pos={{
+                    description: 'Brooklyn',
+                    lat: 23,
+                    lon: 27,
                   }}
-                />
-              ),
-            },
-            {
-              key: Math.random(),
-              content: (
-                <CarouselItem
-                  type="default"
-                  data={{
-                    description: 'Brooklyn, São Paulo',
-                    degrees: '27',
-                  }}
+                  onPosLoad={handleLoadLocation}
                 />
               ),
             },
           ]}
         />
       </CarouselContainer>
-      <DaysDegreesList isLoading={isLoading} />
+      <WeekForecastList isLoading={isLoading} data={weekForecast} />
     </>
   );
 }

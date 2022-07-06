@@ -20,6 +20,11 @@ const CarouselItemHeader = styled.header`
 `;
 
 const CarouselItemContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
   border-radius: 5px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   background-color: rgba(255, 255, 255, 0.1);
@@ -27,20 +32,6 @@ const CarouselItemContent = styled.div`
   padding: 8px;
   height: 14rem;
   width: 14rem;
-
-  header {
-    display: flex;
-    justify-content: flex-end;
-    height: 30%;
-  }
-
-  section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 70%;
-    margin: 0;
-  }
 
   span {
     font-size: 30px;

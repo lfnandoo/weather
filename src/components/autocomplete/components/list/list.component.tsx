@@ -25,7 +25,7 @@ function List({
         )}
         {isLoading &&
           Array.from({ length: 3 }).map(() => (
-            <li>
+            <li key={Math.random()}>
               <Skeleton width="150px" height="20px" />
             </li>
           ))}

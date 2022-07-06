@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const DaysDegreesListContainer = styled.ul`
+const WeekForecastListContainer = styled.ul`
   background-color: #fff;
   margin: 0;
   padding: 0;
@@ -8,4 +8,4 @@ const DaysDegreesListContainer = styled.ul`
   height: 40vh;
 `;
 
-export { DaysDegreesListContainer };
+export { WeekForecastListContainer };
