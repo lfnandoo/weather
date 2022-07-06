@@ -53,7 +53,6 @@ function Home() {
     const { lat, lon } = value.data;
 
     if (typeof lat !== 'undefined' && typeof lon !== 'undefined') {
-      console.log('chama fio');
       return handleLoadLocation({ lat, lon });
     }
 
@@ -81,9 +80,9 @@ function Home() {
                 <CarouselItem
                   type="default"
                   pos={{
-                    description: 'Brooklyn',
-                    lat: 23,
-                    lon: 27,
+                    description: 'São Paulo, Brasil',
+                    lat: -46.6334,
+                    lon: -23.5507,
                   }}
                   onPosLoad={handleLoadLocation}
                 />
