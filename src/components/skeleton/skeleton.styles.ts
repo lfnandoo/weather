@@ -1,11 +1,7 @@
 import styled from 'styled-components';
+import { SkeletonProps } from './skeleton.component';
 
-interface SkeletonProps {
-  height: string;
-  width: string;
-}
-
-const Skeleton = styled.div<SkeletonProps>`
+const SkeletonContainer = styled.div<SkeletonProps>`
   height: ${({ height }) => height};
   width: ${({ width }) => width};
   background-image: linear-gradient(-90deg, #e7edf1 0%, #cac2c2 50%, #e7edf1 100%);
@@ -23,4 +19,4 @@ const Skeleton = styled.div<SkeletonProps>`
   }
 `;
 
-export { Skeleton };
+export { SkeletonContainer };

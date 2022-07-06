@@ -1,4 +1,4 @@
-import { Skeleton } from '../../../skeleton/skeleton.styles';
+import { Skeleton } from '../../../skeleton/skeleton.component';
 import { ListContainer, UlList } from './list.styles';
 
 function List({
