@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { WiDayCloudyWindy, WiThermometerExterior } from 'react-icons/wi';
-import { Autocomplete } from '../../../components/autocomplete/autocomplete.component';
-import { Skeleton } from '../../../components/skeleton/skeleton.component';
-import { Location, LocationService } from '../../../services/location/location.service';
+import { Autocomplete } from '../autocomplete/autocomplete.component';
+import { Skeleton } from '../skeleton/skeleton.component';
+import { Location, LocationService } from '../../services/location/location.service';
 import {
   CarouselItemContainer,
   CarouselItemHeader,

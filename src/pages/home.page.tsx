@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Carousel } from '../components/carousel/carousel.component';
 import { WeekForecastList } from '../components/week-forecast-list/week-forecast-list.component';
 import { CarouselContainer } from './home.styles';
-import { CarouselItem } from './components/carousel-item/carousel-item.component';
+import { CarouselItem } from '../components/carousel-item/carousel-item.component';
 import { GetForecastByPosResponse, WeatherService } from '../services/weather/weather.service';
 import { DayInterface } from '../components/week-forecast-list/components/day-item/day-item.component';
 
