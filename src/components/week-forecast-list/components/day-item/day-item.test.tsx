@@ -2,6 +2,14 @@ import { render } from '@testing-library/react';
 import { DayItem } from './day-item.component';
 
 describe('WeekForecastList > DayItem Component', () => {
+  it('should render correctly', () => {
+    const { asFragment } = render(
+      <DayItem data={{ description: 'Hoje', max: 34.4, min: 25.03 }} />,
+    );
+
+    expect(asFragment()).toMatchSnapshot();
+  });
+
   it('should render temperature as integer', () => {
     const { queryByText } = render(
       <DayItem data={{ description: 'Hoje', max: 34.4, min: 25.03 }} />,

@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Autocomplete Component should render correctly 1`] = `
+<DocumentFragment>
+  <input
+    autocomplete="off"
+    class="sc-bczRLJ lbLDEh"
+    data-testid="autocomplete-input"
+    type="text"
+    value="São"
+  />
+  <div
+    class="sc-dkzDqf eevhgj"
+  >
+    <ul
+      class="sc-hKMtZM iTymCl"
+      data-testid="suggestions"
+    >
+      <li
+        data-testid="item-loading"
+      >
+        <div
+          class="sc-gsnTZi fIklhb"
+          data-testid="skeleton"
+          height="20px"
+          width="150px"
+        />
+      </li>
+      <li
+        data-testid="item-loading"
+      >
+        <div
+          class="sc-gsnTZi fIklhb"
+          data-testid="skeleton"
+          height="20px"
+          width="150px"
+        />
+      </li>
+      <li
+        data-testid="item-loading"
+      >
+        <div
+          class="sc-gsnTZi fIklhb"
+          data-testid="skeleton"
+          height="20px"
+          width="150px"
+        />
+      </li>
+    </ul>
+  </div>
+</DocumentFragment>
+`;

@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Autocomplete > List Component should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-gsnTZi dxpncY"
+  >
+    <ul
+      class="sc-dkzDqf ioOdXm"
+      data-testid="suggestions"
+    >
+      <li
+        data-testid="item"
+      >
+        Teste
+      </li>
+      <li
+        data-testid="item"
+      >
+        Teste
+      </li>
+      <li
+        data-testid="item"
+      >
+        Teste
+      </li>
+    </ul>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Autocomplete > List Component should render correctly 2`] = `
+<DocumentFragment>
+  <div
+    class="sc-gsnTZi dxpncY"
+  >
+    <ul
+      class="sc-dkzDqf ioOdXm"
+      data-testid="suggestions"
+    >
+      <li
+        data-testid="item-loading"
+      >
+        <div
+          class="sc-bczRLJ bEgVHR"
+          data-testid="skeleton"
+          height="20px"
+          width="150px"
+        />
+      </li>
+      <li
+        data-testid="item-loading"
+      >
+        <div
+          class="sc-bczRLJ bEgVHR"
+          data-testid="skeleton"
+          height="20px"
+          width="150px"
+        />
+      </li>
+      <li
+        data-testid="item-loading"
+      >
+        <div
+          class="sc-bczRLJ bEgVHR"
+          data-testid="skeleton"
+          height="20px"
+          width="150px"
+        />
+      </li>
+    </ul>
+  </div>
+</DocumentFragment>
+`;

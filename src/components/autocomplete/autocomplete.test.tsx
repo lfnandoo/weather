@@ -2,6 +2,14 @@ import { fireEvent, waitFor } from '@testing-library/dom';
 import { autocompleteCreateAndChangeInput } from './autocomplete.test-utils';
 
 describe('Autocomplete Component', () => {
+  it('should render correctly', () => {
+    const {
+      renderResult: { asFragment },
+    } = autocompleteCreateAndChangeInput();
+
+    expect(asFragment()).toMatchSnapshot();
+  });
+
   it('should trigger onSearch on input changes', async () => {
     const { onSearch } = autocompleteCreateAndChangeInput();
 

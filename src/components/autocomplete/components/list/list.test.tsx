@@ -3,6 +3,32 @@ import { fireEvent, getByTestId as gGetByTestId } from '@testing-library/dom';
 import { List } from './list.component';
 
 describe('Autocomplete > List Component', () => {
+  it('should render correctly', () => {
+    const onClick = jest.fn();
+    const { asFragment } = render(
+      <List
+        items={[{ description: 'Teste' }, { description: 'Teste' }, { description: 'Teste' }]}
+        onClick={onClick}
+        isLoading={false}
+      />,
+    );
+
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  it('should render correctly', () => {
+    const onClick = jest.fn();
+    const { asFragment } = render(
+      <List
+        items={[{ description: 'Teste' }, { description: 'Teste' }, { description: 'Teste' }]}
+        onClick={onClick}
+        isLoading
+      />,
+    );
+
+    expect(asFragment()).toMatchSnapshot();
+  });
+
   it('should render items', () => {
     const onClick = jest.fn();
     const { getAllByTestId } = render(
