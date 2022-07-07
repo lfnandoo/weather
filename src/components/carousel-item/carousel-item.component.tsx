@@ -154,7 +154,11 @@ function CarouselItem({ type, onSearchLoad, onPosLoad, pos }: CarouselItemTypePr
         {type !== 'search' && location?.description && <h1>{location.description}</h1>}
         {type === 'search' && (
           <div style={{ width: '100%' }}>
-            <Autocomplete onSearch={handleSearchLocation} onChange={handleLoadLocationOnSearch} />
+            <Autocomplete
+              placeholder="Digite uma localização"
+              onSearch={handleSearchLocation}
+              onChange={handleLoadLocationOnSearch}
+            />
           </div>
         )}
       </CarouselItemHeader>

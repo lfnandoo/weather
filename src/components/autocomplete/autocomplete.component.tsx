@@ -8,15 +8,16 @@ interface AutocompleteProps extends Omit<InputHTMLAttributes<any>, 'onChange'> {
     searchTerm: string,
   ) => Promise<{ description: string; value: string; data: unknown }[]>;
   onChange: (value: { description: string; value: string; data: unknown }) => void;
+  debounce?: number;
 }
 
-function Autocomplete({ onSearch, onChange, ...inputProps }: AutocompleteProps) {
+function Autocomplete({ onSearch, onChange, debounce = 500, ...inputProps }: AutocompleteProps) {
   const searchRef = useRef({ enableSearch: false });
   const [isListOpen, setIsListOpen] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [items, setItems] = useState([] as { description: string; value: string; data: unknown }[]);
-  const debouncedSearchTerm = useDebounce(searchTerm, 500);
+  const debouncedSearchTerm = useDebounce(searchTerm, debounce);
 
   async function handleSearch() {
     setIsSearching(true);
@@ -44,9 +45,7 @@ function Autocomplete({ onSearch, onChange, ...inputProps }: AutocompleteProps) 
     <>
       <AutocompleteInput
         {...inputProps}
-        id="searchLocation"
-        name="searchLocation"
-        placeholder="Digite uma localização"
+        data-testid="autocomplete-input"
         type="text"
         value={searchTerm}
         onChange={(e) => {

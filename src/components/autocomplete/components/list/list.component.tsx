@@ -12,7 +12,7 @@ function List({
 }) {
   return (
     <ListContainer>
-      <UlList>
+      <UlList data-testid="suggestions">
         {!isLoading && (
           <>
             {items.map((item, index) => (
