@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import { fireEvent, getByTestId } from '@testing-library/dom';
+import { fireEvent, getByTestId as gGetByTestId } from '@testing-library/dom';
 import { List } from './list.component';
 
 describe('Autocomplete > List Component', () => {
@@ -16,7 +16,14 @@ describe('Autocomplete > List Component', () => {
     expect(getAllByTestId('item')).toHaveLength(3);
   });
 
-  it('should render 3 items when is loading', () => {
+  it('should render empty state', () => {
+    const onClick = jest.fn();
+    const { getByTestId } = render(<List items={[]} onClick={onClick} isLoading={false} />);
+
+    expect(getByTestId('empty')).toBeInTheDocument();
+  });
+
+  it('should render 3 loading items when is loading', () => {
     const onClick = jest.fn();
     const { queryAllByTestId } = render(<List items={[]} onClick={onClick} isLoading />);
 
@@ -29,7 +36,7 @@ describe('Autocomplete > List Component', () => {
 
     getAllByTestId('item-loading').forEach((element) => {
       expect(element.childElementCount).toBe(1);
-      expect(getByTestId(element, 'skeleton')).toBeInTheDocument();
+      expect(gGetByTestId(element, 'skeleton')).toBeInTheDocument();
     });
   });
 

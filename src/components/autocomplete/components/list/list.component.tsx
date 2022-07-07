@@ -20,7 +20,7 @@ function List({
                 {item.description}
               </li>
             ))}
-            {items.length === 0 && <p>Nenhum resultado encontrado</p>}
+            {items.length === 0 && <p data-testid="empty">Nenhum resultado encontrado</p>}
           </>
         )}
         {isLoading &&
