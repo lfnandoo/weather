@@ -1,13 +1,17 @@
-import { InputHTMLAttributes, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, InputHTMLAttributes, useEffect, useRef, useState } from 'react';
 import { useDebounce } from '../../hooks/use-debounce.hook';
 import { AutocompleteInput } from './autocomplete.styles';
 import { List } from './components/list/list.component';
 
+interface Option {
+  description: string;
+  value: string;
+  data: unknown;
+}
+
 interface AutocompleteProps extends Omit<InputHTMLAttributes<any>, 'onChange'> {
-  onSearch: (
-    searchTerm: string,
-  ) => Promise<{ description: string; value: string; data: unknown }[]>;
-  onChange: (value: { description: string; value: string; data: unknown }) => void;
+  onSearch: (searchTerm: string) => Promise<Option[]>;
+  onChange: (value: Option) => void;
   debounce?: number;
 }
 
@@ -16,7 +20,7 @@ function Autocomplete({ onSearch, onChange, debounce = 500, ...inputProps }: Aut
   const [isListOpen, setIsListOpen] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-  const [items, setItems] = useState([] as { description: string; value: string; data: unknown }[]);
+  const [items, setItems] = useState([] as Option[]);
   const debouncedSearchTerm = useDebounce(searchTerm, debounce);
 
   async function handleSearch() {
@@ -35,6 +39,11 @@ function Autocomplete({ onSearch, onChange, debounce = 500, ...inputProps }: Aut
     searchRef.current.enableSearch = false;
   }
 
+  function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
+    setSearchTerm(e.target.value);
+    searchRef.current.enableSearch = true;
+  }
+
   useEffect(() => {
     if (debouncedSearchTerm && searchRef.current.enableSearch) {
       handleSearch();
@@ -48,10 +57,7 @@ function Autocomplete({ onSearch, onChange, debounce = 500, ...inputProps }: Aut
         data-testid="autocomplete-input"
         type="text"
         value={searchTerm}
-        onChange={(e) => {
-          setSearchTerm(e.target.value);
-          searchRef.current.enableSearch = true;
-        }}
+        onChange={handleInputChange}
         autoComplete="off"
       />
       {isListOpen && <List items={items} onClick={handleChange} isLoading={isSearching} />}

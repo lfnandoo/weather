@@ -30,8 +30,8 @@ interface CarouselItemTypeDefault {
 interface CarouselItemTypeSearch {
   type: 'search';
   onSearchLoad: (arg1: {
-    data: any;
-  }) => Promise<{ description?: string; temp?: number; lat?: number; lon?: number }>;
+    data: unknown;
+  }) => Promise<Partial<{ description: string; temp: number; lat: number; lon: number }>>;
   onPosLoad?: undefined;
   pos?: undefined;
 }
@@ -153,7 +153,7 @@ function CarouselItem({ type, onSearchLoad, onPosLoad, pos }: CarouselItemTypePr
       <CarouselItemHeader>
         {type !== 'search' && location?.description && <h1>{location.description}</h1>}
         {type === 'search' && (
-          <div style={{ width: '100%' }}>
+          <div>
             <Autocomplete
               placeholder="Digite uma localização"
               onSearch={handleSearchLocation}

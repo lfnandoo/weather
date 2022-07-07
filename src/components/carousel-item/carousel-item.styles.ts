@@ -17,6 +17,10 @@ const CarouselItemHeader = styled.header`
     font-size: 20px;
     font-weight: 200;
   }
+
+  div {
+    width: 100%;
+  }
 `;
 
 const CarouselItemContent = styled.div`
